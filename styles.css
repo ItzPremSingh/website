@@ -1,0 +1,157 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+header {
+  background: linear-gradient(135deg, #008080, #6a5acd);
+  padding: 40px 0;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid #ffffff;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3.5em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+header p {
+  font-size: 1.2em;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 30px;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  background: #2a2a2a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 0.6s forwards;
+}
+
+.card:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 1.8em;
+  color: #008080;
+}
+
+.card p {
+  font-size: 1em;
+  margin: 10px 0;
+  opacity: 0.85;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: auto;
+  padding: 12px 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #008080, #6a5acd);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+}
+
+.card a:hover {
+  background: #6a5acd;
+  transform: scale(1.05);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.card:hover::before {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.suggest-button {
+  padding: 12px 24px;
+  margin-top: 15px;
+  font-size: 1em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+}
+
+.suggest-button:hover {
+  background: #feb47b;
+  transform: scale(1.05);
+}
+
+@media (min-width: 600px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    width: calc(33.33% - 20px);
+  }
+}
