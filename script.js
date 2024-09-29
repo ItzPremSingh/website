@@ -16,7 +16,7 @@ async function fetchJsonObject(filePath) {
     }
 }
 
-(async function {
+(async function() {
   dict = await fetchJsonObject("pages.json");
   
   for (const [name, { repository, description }] of Object.entries(dict)) {
