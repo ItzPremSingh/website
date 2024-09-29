@@ -1,0 +1,10 @@
+{
+  "Table": {
+    "repository": "table",
+    "description": "Write table for the given number.",
+  },
+  "Mines": {
+    "repository": "mines",
+    "description": "Game of mines and bomb.",
+  },
+}
