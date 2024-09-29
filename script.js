@@ -17,7 +17,7 @@ async function fetchJsonObject(filePath) {
 }
 
 (async function() {
-  dict = await fetchJsonObject("pages.json");
+  const dict = await fetchJsonObject("pages.json");
   
   for (const [name, { repository, description }] of Object.entries(dict)) {
     const card = document.createElement("div");
