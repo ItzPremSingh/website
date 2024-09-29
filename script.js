@@ -1,19 +1,32 @@
 "use strict";
 
-const fs = require('fs');
-
-const jsonData = fs.readFileSync('pages.json', 'utf8');
-const jsonObject = JSON.parse(jsonData);
-
 const webpageList = document.getElementById("webpage-list");
 
-for (const [name, { repository, description }] of Object.entries(dict)) {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-        <h3>${name}</h3>
-        <p>${description}</p>
-        <a href="https://itzpremsingh.github.io/${repository}/" target="_blank">View Project</a>
-    `;
-  webpageList.appendChild(card);
+async function fetchJsonObject(filePath) {
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        const jsonData = await response.json(); 
+        return jsonData; 
+    } catch (error) {
+        console.error('Error fetching JSON:', error);
+        return null; 
+    }
 }
+
+(async function {
+  dict = await fetchJsonObject("pages.json");
+  
+  for (const [name, { repository, description }] of Object.entries(dict)) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+          <h3>${name}</h3>
+          <p>${description}</p>
+          <a href="https://itzpremsingh.github.io/${repository}/" target="_blank">View Project</a>
+      `;
+    webpageList.appendChild(card);
+  }
+})();
