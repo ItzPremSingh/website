@@ -8,7 +8,7 @@ async function fetchJsonObject(filePath) {
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
-        const jsonData = await response.; 
+        const jsonData = await response.json; 
         return jsonData; 
     } catch (error) {
         return null; 
