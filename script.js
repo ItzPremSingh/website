@@ -11,7 +11,6 @@ async function fetchJsonObject(filePath) {
         const jsonData = await response.json(); 
         return jsonData; 
     } catch (error) {
-        console.error('Error fetching JSON:', error);
         return null; 
     }
 }
