@@ -1,4 +1,8 @@
 {
+  "Tic Toc Toe": {
+    "repository": "tic-tac-toe",
+    "description": "Tic tac toe game with computer."
+  },
   "Table": {
     "repository": "table",
     "description": "Write table for the given number."
