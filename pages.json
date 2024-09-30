@@ -1,14 +1,18 @@
 {
-  "Tic Toc Toe": {
-    "repository": "tic-tac-toe",
+  "Number gueesing game": {
+    "repository": "guessing-game",
+    "description": "Number guessing game with custom number range."
+  },
+  "Tic Toc Toe game": {
+    "repository": "tic-tac-toe-game",
     "description": "Tic tac toe game with computer."
   },
+  "Mines game": {
+    "repository": "mines-game",
+    "description": "Game of mines and bomb."
+  }
   "Table": {
     "repository": "table",
     "description": "Write table for the given number."
   },
-  "Mines": {
-    "repository": "mines",
-    "description": "Game of mines and bomb."
-  }
 }
