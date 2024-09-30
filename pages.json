@@ -10,9 +10,9 @@
   "Mines game": {
     "repository": "mines-game",
     "description": "Game of mines and bomb."
-  }
+  },
   "Table": {
     "repository": "table",
     "description": "Write table for the given number."
-  },
+  }
 }
