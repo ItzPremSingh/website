@@ -1,7 +1,7 @@
 {
   "Memory Game": {
     "repository": "memory-game",
-    "description": "Memory game of images with limited time.",
+    "description": "Memory game of images with limited time."
   },
   "Number guessing game": {
     "repository": "guessing-game",
