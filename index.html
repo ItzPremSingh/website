@@ -138,28 +138,46 @@
       </div>
     </section>
 
-    <section class="page-section" id="contact">
+    <section class="page-section bg-light py-5" id="contact">
       <div class="container">
         <h2
-          class="page-section-heading text-center text-uppercase text-secondary mb-0"
+          class="page-section-heading text-center text-uppercase text-secondary mb-4"
         >
           Contact Me
         </h2>
 
-        <div class="divider-custom">
-          <div class="divider-custom-line"></div>
-          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-          <div class="divider-custom-line"></div>
+        <div class="divider-custom mb-4">
+          <div class="divider-custom-line bg-primary"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-star text-primary"></i>
+          </div>
+          <div class="divider-custom-line bg-primary"></div>
         </div>
 
-        <div class="text-center mt-4">
-          <a
-            class="btn btn-xl btn-outline-primary"
-            href="mailto:itzpremsingh@duck.com"
+        <div class="text-center">
+          <input
+            type="text"
+            id="name"
+            class="form-control mb-3"
+            placeholder="Your Name"
+            required
+          />
+          <textarea
+            id="message"
+            class="form-control mb-3"
+            placeholder="Your Message"
+            rows="4"
+            required
+          ></textarea>
+          <button
+            id="emailButton"
+            class="btn btn-primary btn-lg"
+            onclick="sendEmail()"
+            disabled
           >
             <i class="fas fa-envelope"></i>
-            Contact Me
-          </a>
+            Mail Me
+          </button>
         </div>
       </div>
     </section>
@@ -178,16 +196,16 @@
 
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
-            <a class="btn btn-outline-light btn-social mx-1" href="#!">
+            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
               <i class="fab fa-twitter"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#!">
+            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#!">
+            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
               <i class="fab fa-instagram"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#!">
+            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
               <i class="fab fa-whatsapp"></i>
             </a>
           </div>
