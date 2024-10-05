@@ -105,7 +105,7 @@ function sendEmail() {
   const subject = `Message from ${name}`;
   const body = message;
 
-  const mailtoLink = `mailto:xyz@duck.com?subject=${encodeURIComponent(
+  const mailtoLink = `mailto:itzpremsingh@duck.com?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
 
