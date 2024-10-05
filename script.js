@@ -89,3 +89,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
       });
     });
 });
+
+document.querySelectorAll("#name, #message").forEach((input) => {
+  input.addEventListener("input", () => {
+    const name = document.getElementById("name").value.trim();
+    const message = document.getElementById("message").value.trim();
+    document.getElementById("emailButton").disabled = !(name && message);
+  });
+});
+
+function sendEmail() {
+  const name = document.getElementById("name").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const subject = `Message from ${name}`;
+  const body = message;
+
+  const mailtoLink = `mailto:xyz@duck.com?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailtoLink;
+}
