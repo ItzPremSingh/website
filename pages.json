@@ -1,22 +1,6 @@
 {
-  "Memory Game": {
-    "repository": "memory-game",
-    "description": "Memory game of images with limited time."
-  },
-  "Number guessing game": {
-    "repository": "guessing-game",
-    "description": "Number guessing game with custom number range."
-  },
-  "Tic Toc Toe game": {
-    "repository": "tic-tac-toe-game",
-    "description": "Tic tac toe game with computer."
-  },
-  "Mines game": {
-    "repository": "mines-game",
-    "description": "Game of mines and bomb."
-  },
-  "Table": {
-    "repository": "table",
-    "description": "Write table for the given number."
-  }
+  "Memory Game": "memory-game",
+  "Number guessing game": "guessing-game",
+  "Tic Toc Toe game": "tic-tac-toe-game",
+  "Mines game": "mines-game"
 }
