@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const pagesItems = pagesContainer.getElementsByClassName("row")[0];
 
     const createPageItem = (title, name) => {
-        const repository = `https://itzpremsingh.github.io/HTML/${name}/`;
+        const repository = `https://itzpremsingh.github.io/HTML/${name}`;
 
         const pagesItem = document.createElement("div");
         pagesItem.classList.add("col-md-6", "col-lg-4", "mb-5");
@@ -84,9 +84,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
         .then((res) => res.text())
         .then((data) => {
-            const [, ...pagesDictFromJson] = JSON.parse(data);
+            const pagesDictFromJson = JSON.parse(data);
+
             for (const repository in pagesDictFromJson) {
-                const name = repository["page"];
+                const { name } = pagesDictFromJson[repository];
+                if ([".gitignore", "README.md", "index.html", ".github"].includes(name)) continue;
                 const title = name
                     .split("-")
                     .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
