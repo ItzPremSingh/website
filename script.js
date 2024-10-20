@@ -82,30 +82,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
   };
 
   fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((data) => {
-      const pagesDictFromJson = JSON.parse(data);
-
-      for (const repository in pagesDictFromJson) {
-        const { name } = pagesDictFromJson[repository];
-        if (
-          [
-            ".gitignore",
-            "README.md",
-            "index.html",
-            ".github",
-            "styles.css",
-            "script.js",
-          ].includes(name)
-        )
-          continue;
+      const directories = data
+        .filter((item) => item.type === "dir" && !item.name.startsWith("."))
+        .map((item) => item.name);
+      directories.forEach((name) => {
         const title = name
           .split("-")
           .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
           .join(" ");
         pagesItems.appendChild(createPageItem(title, name));
-      }
-    });
+      });
+    })
+    .catch((error) => console.error(error));
 });
 
 document.querySelectorAll("#name, #message").forEach((input) => {
