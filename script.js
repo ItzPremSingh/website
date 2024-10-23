@@ -60,10 +60,34 @@ fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
   })
   .catch((error) => console.error(error));
 
-document.querySelectorAll("#name, #message").forEach((input) => {
-  input.addEventListener("input", () => {
-    const name = document.getElementById("name").value.trim();
-    const message = document.getElementById("message").value.trim();
-    document.getElementById("emailButton").disabled = !(name && message);
-  });
-});
+function validateForm() {
+  document.getElementById("emailError").style.display = "none";
+  document.getElementById("messageError").style.display = "none";
+
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+  let valid = true;
+
+  if (!validateEmail(email)) {
+    document.getElementById("emailError").innerText =
+      "Please enter a valid email address.";
+    document.getElementById("emailError").style.display = "block";
+    valid = false;
+  }
+
+  if (message.trim() === "") {
+    document.getElementById("messageError").innerText =
+      "Message cannot be empty.";
+    document.getElementById("messageError").style.display = "block";
+    valid = false;
+  }
+
+  if (valid) {
+    document.getElementById("contactForm").submit();
+  }
+}
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}

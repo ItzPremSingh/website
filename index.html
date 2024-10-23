@@ -159,35 +159,46 @@
         </div>
 
         <form
+          id="contactForm"
           action="https://formspree.io/f/mjkvbqgv"
           method="POST"
           class="text-center"
         >
           <div class="form-group">
+            <label class="label" for="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
-              class="form-control"
+              class="form-control mb-3"
               placeholder="Your Email"
               required
             />
+            <div id="emailError" class="error-message">Email is required.</div>
           </div>
           <div class="form-group">
+            <label class="label" for="message">Message</label>
             <textarea
               id="message"
               name="message"
-              class="form-control"
+              class="form-control mb-3"
               placeholder="Your Message"
               rows="4"
               required
             ></textarea>
+            <div id="messageError" class="error-message">
+              Message cannot be empty.
+            </div>
           </div>
+
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">
+            <div
+              class="btn btn-lg btn-outline-light bg-primary text-uppercase mb-4"
+              onclick="validateForm()"
+            >
               <i class="fas fa-envelope"></i>
               Send Message
-            </button>
+            </div>
           </div>
         </form>
       </div>
