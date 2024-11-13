@@ -61,13 +61,9 @@ fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
   .catch((error) => console.error(error));
 
 function validateForm() {
-  document.getElementById("emailError").style.display = "none";
   document.getElementById("messageError").style.display = "none";
 
-  const message = document.getElementById("message").value;
-  let valid = true;
-
-  if (message.trim() === "") {
+  if (document.getElementById("message").value.trim() === "") {
     document.getElementById("messageError").innerText =
       "Message cannot be empty.";
     document.getElementById("messageError").style.display = "block";
