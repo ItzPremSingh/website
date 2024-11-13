@@ -49,8 +49,8 @@
               >
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact"
-                >Contact</a
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#feedback"
+                >Feedback</a
               >
             </li>
           </ul>
@@ -142,12 +142,12 @@
       </div>
     </section>
 
-    <section class="page-section bg-light py-5" id="contact">
+    <section class="page-section bg-light py-5" id="feedback">
       <div class="container">
         <h2
           class="page-section-heading text-center text-uppercase text-secondary mb-4"
         >
-          Contact Me
+          Feedback
         </h2>
 
         <div class="divider-custom mb-4">
@@ -158,26 +158,8 @@
           <div class="divider-custom-line bg-primary"></div>
         </div>
 
-        <form
-          id="contactForm"
-          action="https://formspree.io/f/mjkvbqgv"
-          method="POST"
-          class="text-center"
-        >
+        <div id="contactForm" class="text-center">
           <div class="form-group">
-            <label class="label" for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control mb-3"
-              placeholder="Your Email"
-              required
-            />
-            <div id="emailError" class="error-message">Email is required.</div>
-          </div>
-          <div class="form-group">
-            <label class="label" for="message">Message</label>
             <textarea
               id="message"
               name="message"
@@ -191,16 +173,25 @@
             </div>
           </div>
 
+          <div class="note">
+            <p>
+              <i class="fas fa-paper-plane"></i>
+              <span class="text-muted"
+                >Your email client will be used to send the email.</span
+              >
+            </p>
+          </div>
+
           <div class="text-center mt-4">
             <div
               class="btn btn-lg btn-outline-light bg-primary text-uppercase mb-4"
               onclick="validateForm()"
             >
               <i class="fas fa-envelope"></i>
-              Send Message
+              Send
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </section>
 
@@ -209,11 +200,7 @@
         <div class="row">
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Location</h4>
-            <p class="lead mb-0">
-              India, Ghaziabad,
-              <br />
-              Near Bloom Public School
-            </p>
+            <p class="lead mb-0">India, Uttar Pradesh, Ghazibad</p>
           </div>
 
           <div class="col-lg-4 mb-5 mb-lg-0">
@@ -233,8 +220,11 @@
           </div>
 
           <div class="col-lg-4">
-            <h4 class="text-uppercase mb-4">About Website</h4>
-            <p class="lead mb-0">This website is created by Prem Singh.</p>
+            <h4 class="text-uppercase mb-4">About Me</h4>
+            <p class="lead mb-0">
+              I am Prem Singh.
+              <br />
+            </p>
           </div>
         </div>
       </div>
