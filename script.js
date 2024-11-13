@@ -64,30 +64,18 @@ function validateForm() {
   document.getElementById("emailError").style.display = "none";
   document.getElementById("messageError").style.display = "none";
 
-  const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
   let valid = true;
-
-  if (!validateEmail(email)) {
-    document.getElementById("emailError").innerText =
-      "Please enter a valid email address.";
-    document.getElementById("emailError").style.display = "block";
-    valid = false;
-  }
 
   if (message.trim() === "") {
     document.getElementById("messageError").innerText =
       "Message cannot be empty.";
     document.getElementById("messageError").style.display = "block";
-    valid = false;
+  } else {
+    const subject = encodeURIComponent(`Message from user`);
+    const body = encodeURIComponent(message);
+    window.open(
+      `mailto:itzpremsingh@gmail.com?subject=${subject}&body=${body}`
+    );
   }
-
-  if (valid) {
-    document.getElementById("contactForm").submit();
-  }
-}
-
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
 }
