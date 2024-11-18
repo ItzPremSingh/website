@@ -1,12 +1,10 @@
-const pages = document.getElementById("pages");
-const pagesContainer = pages.getElementsByClassName("container")[0];
-const pagesItems = pagesContainer.getElementsByClassName("row")[0];
+"use strict";
 
-const createPageItem = (title, name) => {
+function createPageItem(title, name) {
   const repository = `https://itzpremsingh.github.io/HTML/${name}`;
 
-  const pagesItem = document.createElement("div");
-  pagesItem.classList.add("col-md-6", "col-lg-4", "mb-5");
+  const cardContainer = document.createElement("div");
+  cardContainer.classList.add("card-container", "col-md-6", "col-lg-4", "mb-5");
 
   const cardDiv = document.createElement("div");
   cardDiv.classList.add(
@@ -39,39 +37,85 @@ const createPageItem = (title, name) => {
   cardBody.appendChild(openButton);
   cardDiv.appendChild(imgElement);
   cardDiv.appendChild(cardBody);
+  cardContainer.appendChild(cardDiv);
 
-  pagesItem.appendChild(cardDiv);
-  return pagesItem;
-};
+  addCardAnimation(cardContainer, cardDiv);
 
-fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
-  .then((res) => res.json())
-  .then((data) => {
-    const directories = data
-      .filter((item) => item.type === "dir" && !item.name.startsWith("."))
-      .map((item) => item.name);
-    directories.forEach((name) => {
-      const title = name
-        .split("-")
-        .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-        .join(" ");
-      pagesItems.appendChild(createPageItem(title, name));
-    });
-  })
-  .catch((error) => console.error(error));
+  return cardContainer;
+}
+
+function loadPages() {
+  const loadingDiv = document.createElement("div");
+  loadingDiv.classList.add("d-flex", "justify-content-center");
+  loadingDiv.id = "loading";
+  pagesItems.appendChild(loadingDiv);
+
+  const spinner = document.createElement("div");
+  spinner.classList.add(
+    "spinner-border",
+    "text-primary",
+    "mx-auto",
+    "my-5",
+    "d-block"
+  );
+  spinner.role = "status";
+  loadingDiv.appendChild(spinner);
+
+  const span = document.createElement("span");
+  span.classList.add("visually-hidden");
+  span.textContent = "Loading...";
+  spinner.appendChild(span);
+}
 
 function validateForm() {
+  const message = document.getElementById("message");
   document.getElementById("messageError").style.display = "none";
 
-  if (document.getElementById("message").value.trim() === "") {
+  if (message.value.trim() === "") {
     document.getElementById("messageError").innerText =
       "Message cannot be empty.";
     document.getElementById("messageError").style.display = "block";
   } else {
-    const subject = encodeURIComponent(`Message from user`);
-    const body = encodeURIComponent(message);
-    window.open(
-      `mailto:itzpremsingh@gmail.com?subject=${subject}&body=${body}`
-    );
+    const subject = encodeURIComponent("Feedback");
+    const body = encodeURIComponent(message.value);
+    window.open(`mailto:itzpremsingh@duck.com?subject=${subject}&body=${body}`);
   }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadPages();
+  fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("loading").remove();
+      const directories = data
+        .filter((item) => item.type === "dir" && !item.name.startsWith("."))
+        .map((item) => item.name);
+      directories.forEach((name) => {
+        const title = name
+          .split("-")
+          .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+          .join(" ");
+        pagesItems.appendChild(createPageItem(title, name));
+      });
+    })
+    .catch((error) => console.error(error));
+});
+
+function addCardAnimation(container, card) {
+  container.addEventListener("mousemove", (e) => {
+    const { offsetWidth: width, offsetHeight: height } = card;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = (y / height - 0.5) * 30;
+    const rotateY = (x / width - 0.5) * -30;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0) rotateY(0)";
+  });
 }

@@ -64,11 +64,6 @@
     text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc,
       0 0 80px #00cc99, 0 0 100px #00cc99, 0 0 120px #00cc99;
   }
-
-  100% {
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
-      0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
-  }
 }
 
 #contactForm {
@@ -101,7 +96,11 @@ textarea {
   display: none;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+.card-container {
+  perspective: 1000px;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
 }
