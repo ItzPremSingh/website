@@ -1,5 +1,30 @@
 "use strict";
 
+/* Global Variables */
+
+const messageInputBox = document.getElementById("message");
+const avatar = document.getElementById("avatar");
+
+const confirmationMessage = {
+  feedback: "Have you sended your feedback?",
+  question: "Have you asked your question?",
+  suggestion: "Have you suggested your suggestion?",
+  bugreport: "Have you reported the bug?",
+  other: "Have you sent your message?",
+};
+
+const confirmedMessage = {
+  feedback: "Thanks for your feedback! Your feedback is important to us.",
+  question: "Thanks for your question! We answer your question soon.",
+  suggestion: "Thanks for your suggestion! We implement your suggestion soon.",
+  bugreport: "Thanks for your bug report! We fix your bug soon.",
+  other: "Thanks for your message!",
+};
+
+/* End of Global Variables */
+
+/* Functions */
+
 function createPageItem(title, name) {
   const repository = `https://itzpremsingh.github.io/HTML/${name}`;
 
@@ -67,20 +92,65 @@ function loadPages() {
   spinner.appendChild(span);
 }
 
-function validateForm() {
-  const message = document.getElementById("message");
-  document.getElementById("messageError").style.display = "none";
+function addCardAnimation(container, card) {
+  container.addEventListener("mousemove", (e) => {
+    const { offsetWidth: width, offsetHeight: height } = card;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  if (message.value.trim() === "") {
-    document.getElementById("messageError").innerText =
-      "Message cannot be empty.";
-    document.getElementById("messageError").style.display = "block";
-  } else {
-    const subject = encodeURIComponent("Feedback");
-    const body = encodeURIComponent(message.value);
-    window.open(`mailto:itzpremsingh@duck.com?subject=${subject}&body=${body}`);
-  }
+    const rotateX = (y / height - 0.5) * 30;
+    const rotateY = (x / width - 0.5) * -30;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0) rotateY(0)";
+  });
 }
+/* End of Functions */
+
+/* Event Listeners */
+
+document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
+  document.getElementById("messageError").style.display = "none";
+  document.getElementById("reasonError").style.display = "none";
+  const reason = document.getElementById("reason").value;
+  const message = document.getElementById("message").value;
+
+  var isValid = true;
+
+  if (message.trim() === "") {
+    document.getElementById("messageError").style.display = "block";
+    isValid = false;
+  }
+  if (reason === "") {
+    document.getElementById("reasonError").style.display = "block";
+    isValid = false;
+  }
+
+  if (isValid) {
+    const subject = encodeURIComponent(`Reason: ${reason}`);
+    const body = encodeURIComponent(message);
+    window.open(`mailto:itzpremsingh@duck.com?subject=${subject}&body=${body}`);
+
+    const confirmMail = new bootstrap.Modal(
+      document.getElementById("confirmMail")
+    );
+
+    document.querySelector("#confirmMail .modal-body").textContent =
+      confirmationMessage[reason];
+    confirmMail.show();
+
+    document
+      .getElementById("confirmSendBtn")
+      .addEventListener("click", function () {
+        confirmMail.hide();
+        alert(confirmedMessage[reason]);
+      });
+  }
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   loadPages();
@@ -102,20 +172,12 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error(error));
 });
 
-function addCardAnimation(container, card) {
-  container.addEventListener("mousemove", (e) => {
-    const { offsetWidth: width, offsetHeight: height } = card;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("https://api.github.com/users/itzpremsingh")
+    .then((res) => res.json())
+    .then((data) => {
+      avatar.src = data.avatar_url;
+    });
+});
 
-    const rotateX = (y / height - 0.5) * 30;
-    const rotateY = (x / width - 0.5) * -30;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  container.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0) rotateY(0)";
-  });
-}
+/* End of Event Listeners */

@@ -4,66 +4,14 @@
   animation: bounceFloat 2s ease-in-out infinite;
 }
 
-@keyframes bounceFloat {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  25% {
-    transform: translateY(-20px) scale(1.1);
-  }
-  50% {
-    transform: translateY(0) scale(1.05);
-  }
-  75% {
-    transform: translateY(-10px) scale(1.1);
-  }
-}
-
 .masthead-heading {
   animation: waveScale 2s ease-in-out infinite;
-}
-
-@keyframes waveScale {
-  0%,
-  100% {
-    transform: scale(1) translateY(0);
-  }
-  25% {
-    transform: scale(1.05) translateY(-5px);
-  }
-  50% {
-    transform: scale(1.1) translateY(0);
-  }
-  75% {
-    transform: scale(1.05) translateY(5px);
-  }
 }
 
 .navbar-brand {
   text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
     0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
   animation: glow 2s ease-in-out infinite;
-}
-
-@keyframes glow {
-  0%,
-  100% {
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
-      0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
-  }
-  25% {
-    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc,
-      0 0 40px #00cc99, 0 0 50px #00cc99, 0 0 60px #00cc99;
-  }
-  50% {
-    text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc, 0 0 45px #00ffcc,
-      0 0 60px #00cc99, 0 0 75px #00cc99, 0 0 90px #00cc99;
-  }
-  75% {
-    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc,
-      0 0 80px #00cc99, 0 0 100px #00cc99, 0 0 120px #00cc99;
-  }
 }
 
 #contactForm {
@@ -103,4 +51,56 @@ textarea {
 .card {
   transform-style: preserve-3d;
   transition: transform 0.1s ease-out;
+}
+
+@keyframes bounceFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  50% {
+    transform: translateY(0) scale(1.05);
+  }
+  75% {
+    transform: translateY(-10px) scale(1.1);
+  }
+}
+
+@keyframes waveScale {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  50% {
+    transform: scale(1.1) translateY(0);
+  }
+  75% {
+    transform: scale(1.05) translateY(5px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
+      0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
+  }
+  25% {
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc,
+      0 0 40px #00cc99, 0 0 50px #00cc99, 0 0 60px #00cc99;
+  }
+  50% {
+    text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc, 0 0 45px #00ffcc,
+      0 0 60px #00cc99, 0 0 75px #00cc99, 0 0 90px #00cc99;
+  }
+  75% {
+    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc,
+      0 0 80px #00cc99, 0 0 100px #00cc99, 0 0 120px #00cc99;
+  }
 }
