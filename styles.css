@@ -1,23 +1,29 @@
-.masthead-avatar {
-  width: 200px;
-  border-radius: 50%;
-  animation: bounceFloat 2s ease-in-out infinite;
+/* * {
+  cursor: none !important;
+} */
+
+/* Webite styles */
+.navbar-brand {
+  text-shadow: 0 0 5px var(--bs-secondary), 0 0 10px var(--bs-secondary),
+    0 0 15px var(--bs-secondary), 0 0 20px var(--bs-secondary),
+    0 0 30px var(--bs-secondary), 0 0 40px var(--bs-secondary);
+  filter: brightness(3);
+  letter-spacing: 5px;
 }
 
 .masthead-heading {
-  animation: waveScale 2s ease-in-out infinite;
+  text-shadow: 0 0 5px var(--bs-primary), 0 0 10px var(--bs-primary),
+    0 0 15px var(--bs-primary), 0 0 20px var(--bs-primary),
+    0 0 30px var(--bs-primary), 0 0 40px var(--bs-primary);
+  filter: brightness(1.5);
 }
+/* Webite styles end */
 
-.navbar-brand {
-  text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
-    0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
-  animation: glow 2s ease-in-out infinite;
-}
-
+/* Custom styles */
 #contactForm {
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -37,7 +43,7 @@ textarea {
 }
 
 .error-message {
-  color: #ff4d4d;
+  color: var(--bs-danger);
   font-size: 0.875rem;
   margin-top: 4px;
   padding: 4px;
@@ -53,7 +59,22 @@ textarea {
   transition: transform 0.1s ease-out;
 }
 
-@keyframes bounceFloat {
+#avatar {
+  animation: loading 2s infinite linear;
+}
+
+/* Custom styles end */
+
+/* Animation keyframes */
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bounce-float {
   0%,
   100% {
     transform: translateY(0) scale(1);
@@ -69,7 +90,7 @@ textarea {
   }
 }
 
-@keyframes waveScale {
+@keyframes wave-scale {
   0%,
   100% {
     transform: scale(1) translateY(0);
@@ -85,22 +106,58 @@ textarea {
   }
 }
 
-@keyframes glow {
+@keyframes glow-text {
   0%,
   100% {
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc,
-      0 0 20px #00cc99, 0 0 30px #00cc99, 0 0 40px #00cc99;
+    text-shadow: 0 0 5px var(--bs-secondary), 0 0 10px var(--bs-secondary),
+      0 0 15px var(--bs-secondary), 0 0 20px var(--bs-secondary),
+      0 0 30px var(--bs-secondary), 0 0 40px var(--bs-secondary);
   }
-  25% {
-    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc,
-      0 0 40px #00cc99, 0 0 50px #00cc99, 0 0 60px #00cc99;
+  25%,
+  75% {
+    text-shadow: 0 0 10px var(--bs-secondary), 0 0 20px var(--bs-secondary),
+      0 0 25px var(--bs-secondary), 0 0 40px var(--bs-secondary),
+      0 0 50px var(--bs-secondary), 0 0 80px var(--bs-secondary);
   }
   50% {
-    text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc, 0 0 45px #00ffcc,
-      0 0 60px #00cc99, 0 0 75px #00cc99, 0 0 90px #00cc99;
-  }
-  75% {
-    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc,
-      0 0 80px #00cc99, 0 0 100px #00cc99, 0 0 120px #00cc99;
+    text-shadow: 0 0 7px var(--bs-secondary), 0 0 15px var(--bs-secondary),
+      0 0 20px var(--bs-secondary), 0 0 30px var(--bs-secondary),
+      0 0 40px var(--bs-secondary), 0 0 60px var(--bs-secondary);
   }
 }
+/* Animations keyframes end */
+
+/* Enable animations on larger screens */
+@media (min-width: 768px) {
+  .masthead-avatar {
+    animation: bounce-float 2s ease-in-out infinite;
+  }
+  .masthead-heading {
+    animation: wave-scale 2s ease-in-out infinite;
+  }
+  .navbar-brand {
+    animation: glow-text 2s ease-in-out infinite;
+  }
+}
+/* Enable animations on larger screens end */
+
+/* #customPointer {
+  z-index: 10000;
+  position: fixed;
+  width: 5vw;
+  height: 5vw;
+  max-width: 50px;
+  max-height: 50px;
+  min-width: 20px;
+  min-height: 20px;
+  background-image: linear-gradient(
+    to right,
+    var(--bs-primary),
+    var(--bs-secondary)
+  );
+  filter: brightness(2);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease, background-color 0.3s ease;
+} */

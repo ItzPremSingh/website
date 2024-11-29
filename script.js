@@ -1,9 +1,13 @@
 "use strict";
 
 /* Global Variables */
+let mouseX = 0,
+  mouseY = 0;
 
 const messageInputBox = document.getElementById("message");
 const avatar = document.getElementById("avatar");
+
+const customPointer = document.getElementById("customPointer");
 
 const confirmationMessage = {
   feedback: "Have you sended your feedback?",
@@ -64,6 +68,11 @@ function createPageItem(title, name) {
   cardDiv.appendChild(cardBody);
   cardContainer.appendChild(cardDiv);
 
+  const customPointer = document.createElement("div");
+  customPointer.classList.add("custom-pointer");
+  customPointer.id = "custom-pointer";
+  cardContainer.appendChild(customPointer);
+
   addCardAnimation(cardContainer, cardDiv);
 
   return cardContainer;
@@ -109,9 +118,28 @@ function addCardAnimation(container, card) {
     card.style.transform = "rotateX(0) rotateY(0)";
   });
 }
+
+function saveImageURL(url) {
+  sessionStorage.setItem("imageUrl", url);
+}
+
+function getImageURL() {
+  return sessionStorage.getItem("imageUrl");
+}
+
+function savePageDetails(names) {
+  sessionStorage.setItem("names", JSON.stringify(names));
+}
+
+function getPageDetails() {
+  return JSON.parse(sessionStorage.getItem("names")) || [];
+}
 /* End of Functions */
 
 /* Event Listeners */
+document.getElementById("avatar").addEventListener("click", () => {
+  window.open("https://github.com/itzpremsingh", "_blank");
+});
 
 document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
   document.getElementById("messageError").style.display = "none";
@@ -153,31 +181,79 @@ document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  loadPages();
-  fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
-    .then((res) => res.json())
-    .then((data) => {
-      document.getElementById("loading").remove();
-      const directories = data
-        .filter((item) => item.type === "dir" && !item.name.startsWith("."))
-        .map((item) => item.name);
-      directories.forEach((name) => {
-        const title = name
-          .split("-")
-          .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-          .join(" ");
-        pagesItems.appendChild(createPageItem(title, name));
-      });
-    })
-    .catch((error) => console.error(error));
+  const allPages = getPageDetails();
+  if (allPages.length === 0) {
+    loadPages();
+    fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("loading").remove();
+        const directories = data
+          .filter((item) => item.type === "dir" && !item.name.startsWith("."))
+          .map((item) => item.name);
+        directories.forEach((name) => {
+          const title = name
+            .split("-")
+            .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+            .join(" ");
+          pagesItems.appendChild(createPageItem(title, name));
+          allPages.push(name);
+        });
+
+        savePageDetails(allPages);
+      })
+      .catch((error) => console.error(error));
+  } else {
+    allPages.forEach((name) => {
+      const title = name
+        .split("-")
+        .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+        .join(" ");
+      pagesItems.appendChild(createPageItem(title, name));
+    });
+  }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  fetch("https://api.github.com/users/itzpremsingh")
-    .then((res) => res.json())
-    .then((data) => {
-      avatar.src = data.avatar_url;
-    });
+  const imageUrl = getImageURL();
+  if (imageUrl === null) {
+    fetch("https://api.github.com/users/itzpremsingh")
+      .then((res) => res.json())
+      .then((data) => {
+        saveImageURL(data.avatar_url);
+        avatar.src = data.avatar_url;
+      });
+  } else {
+    avatar.src = imageUrl;
+  }
+  avatar.style.animation = "none";
+  avatar.style.borderRadius = "50%";
 });
+
+// document.addEventListener("mousemove", (event) => {
+//   mouseX = event.clientX;
+//   mouseY = event.clientY;
+
+//   customPointer.style.left = `${mouseX}px`;
+//   customPointer.style.top = `${mouseY}px`;
+
+//   customPointer.style.transform = `translate(-50%, -50%) scale(1.1)`;
+//   setTimeout(() => {
+//     customPointer.style.transform = `translate(-50%, -50%) scale(1)`;
+//   }, 50);
+// });
+
+// document.addEventListener("scroll", () => {
+//   customPointer.style.left = `${mouseX}px`;
+//   customPointer.style.top = `${mouseY}px`;
+// });
+
+// document.addEventListener("mouseenter", () => {
+//   customPointer.style.display = "block";
+// });
+
+// document.addEventListener("mouseleave", () => {
+//   customPointer.style.display = "none";
+// });
 
 /* End of Event Listeners */
