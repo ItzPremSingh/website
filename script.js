@@ -5,24 +5,23 @@ let mouseX = 0,
   mouseY = 0;
 
 const messageInputBox = document.getElementById("message");
-const avatar = document.getElementById("avatar");
 
 const customPointer = document.getElementById("customPointer");
 
 const confirmationMessage = {
-  feedback: "Have you sended your feedback?",
-  question: "Have you asked your question?",
-  suggestion: "Have you suggested your suggestion?",
-  bugreport: "Have you reported the bug?",
-  other: "Have you sent your message?",
+  Feedback: "Have you sended your feedback?",
+  Question: "Have you asked your question?",
+  Suggestion: "Have you suggested your suggestion?",
+  "Bug report": "Have you reported the bug?",
+  Other: "Have you sent your message?",
 };
 
 const confirmedMessage = {
-  feedback: "Thanks for your feedback! Your feedback is important to us.",
-  question: "Thanks for your question! We answer your question soon.",
-  suggestion: "Thanks for your suggestion! We implement your suggestion soon.",
-  bugreport: "Thanks for your bug report! We fix your bug soon.",
-  other: "Thanks for your message!",
+  Feedback: "Thanks for your feedback! Your feedback is important to us.",
+  Question: "Thanks for your question! We answer your question soon.",
+  Suggestion: "Thanks for your suggestion! We implement your suggestion soon.",
+  "Bug report": "Thanks for your bug report! We fix your bug soon.",
+  Other: "Thanks for your message!",
 };
 
 /* End of Global Variables */
@@ -56,11 +55,13 @@ function createPageItem(title, name) {
   titleElement.classList.add("card-title", "text-dark", "mb-3");
   titleElement.textContent = title;
 
-  const openButton = document.createElement("a");
+  const openButton = document.createElement("div");
   openButton.classList.add("btn", "btn-primary", "mt-2", "w-100");
-  openButton.href = `${repository}/index.html`;
-  openButton.target = "_blank";
   openButton.textContent = "Open Page";
+
+  openButton.addEventListener("click", () => {
+    window.open(`${repository}/index.html`, "_blank");
+  });
 
   cardBody.appendChild(titleElement);
   cardBody.appendChild(openButton);
@@ -119,14 +120,6 @@ function addCardAnimation(container, card) {
   });
 }
 
-function saveImageURL(url) {
-  sessionStorage.setItem("imageUrl", url);
-}
-
-function getImageURL() {
-  return sessionStorage.getItem("imageUrl");
-}
-
 function savePageDetails(names) {
   sessionStorage.setItem("names", JSON.stringify(names));
 }
@@ -137,8 +130,14 @@ function getPageDetails() {
 /* End of Functions */
 
 /* Event Listeners */
-document.getElementById("avatar").addEventListener("click", () => {
-  window.open("https://github.com/itzpremsingh", "_blank");
+document.getElementById("logo").addEventListener("click", () => {
+  window.location.href = "#page-top";
+});
+
+document.querySelectorAll("#avatar, #githubProfileBtn").forEach((el) => {
+  el.addEventListener("click", () => {
+    window.open("https://github.com/itzpremsingh", "_blank");
+  });
 });
 
 document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
@@ -214,21 +213,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const imageUrl = getImageURL();
-  if (imageUrl === null) {
-    fetch("https://api.github.com/users/itzpremsingh")
-      .then((res) => res.json())
-      .then((data) => {
-        saveImageURL(data.avatar_url);
-        avatar.src = data.avatar_url;
-      });
-  } else {
-    avatar.src = imageUrl;
-  }
-  avatar.style.animation = "none";
-  avatar.style.borderRadius = "50%";
-});
+document
+  .querySelectorAll(".social-media")
+  .forEach((el) =>
+    el.addEventListener("click", () =>
+      new bootstrap.Modal(document.getElementById("socialMediaModal")).show()
+    )
+  );
 
 // document.addEventListener("mousemove", (event) => {
 //   mouseX = event.clientX;

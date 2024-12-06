@@ -25,7 +25,7 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand" href="#page-top">Code Verse</a>
+        <div class="navbar-brand" id="logo">Code Verse</div>
         <button
           class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
           type="button"
@@ -42,7 +42,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#pages"
-                >pages</a
+                >Pages</a
               >
             </li>
             <li class="nav-item mx-0 mx-lg-1">
@@ -65,7 +65,7 @@
         <img
           class="masthead-avatar mb-5"
           id="avatar"
-          src="assets/img/loading.png"
+          src="https://avatars.githubusercontent.com/u/142191827?v=4"
           alt="Avatar"
         />
 
@@ -78,7 +78,7 @@
         </div>
 
         <p class="masthead-subheading font-weight-light mb-0">
-          STUDYING - PYTHON
+          "Pain is not to suffer; it’s to learn." ~ Prem Singh
         </p>
       </div>
     </header>
@@ -134,13 +134,10 @@
         </div>
 
         <div class="text-center mt-4">
-          <a
-            class="btn btn-xl btn-outline-light"
-            href="https://github.com/ItzPremSingh"
-          >
+          <div class="btn btn-xl btn-outline-light" id="githubProfileBtn">
             <i class="fab fa-github"></i>
             GitHub Profile
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -173,11 +170,11 @@
               <option value="" selected disabled hidden>
                 Reason for contacting
               </option>
-              <option value="feedback">Feedback</option>
-              <option value="question">Question</option>
-              <option value="suggestion">Suggestion</option>
-              <option value="bugreport">Report a bug</option>
-              <option value="other">Other</option>
+              <option value="Feedback">Feedback</option>
+              <option value="Question">Question</option>
+              <option value="Suggestion">Suggestion</option>
+              <option value="Bug report">Report a bug</option>
+              <option value="Other">Other</option>
             </select>
             <div id="reasonError" class="error-message">
               Please select a reason for contacting.
@@ -207,13 +204,20 @@
             </p>
           </div>
 
-          <div class="text-center mt-4">
+          <!-- <div class="text-center mt-4">
             <button
               class="btn btn-lg btn-outline-light bg-primary text-uppercase mb-4"
               id="sendEmailBtn"
             >
               <i class="fas fa-paper-plane"></i>
-              Send
+              Send Email
+            </button>
+          </div> -->
+
+          <div class="text-center mt-4">
+            <button class="btn btn-lg btn-outline-dark" id="sendEmailBtn">
+              <i class="fas fa-paper-plane"></i>
+              Send Email
             </button>
           </div>
         </div>
@@ -259,34 +263,60 @@
       </div>
     </div>
 
+    <div
+      class="modal"
+      id="socialMediaModal"
+      tabindex="-1"
+      aria-labelledby="socialMediaModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="socialMediaModalLabel">Message</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <span style="color: #007bff">I don't have any of these</span>
+            <span style="color: #dc3545">social media account</span>.
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Location</h4>
-            <p class="lead mb-0">India, Uttar Pradesh, Ghazibad</p>
+            <p class="lead mb-0">India, Uttar Pradesh, Ghaziabad</p>
           </div>
 
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
-            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
+            <div class="btn btn-outline-light btn-social mx-1 social-media">
               <i class="fab fa-twitter"></i>
-            </a>
-            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
+            </div>
+            <div class="btn btn-outline-light btn-social mx-1 social-media">
               <i class="fab fa-facebook-f"></i>
-            </a>
-            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
+            </div>
+            <div class="btn btn-outline-light btn-social mx-1 social-media">
               <i class="fab fa-instagram"></i>
-            </a>
-            <a class="btn btn-outline-light btn-social mx-1 disabled" href="#!">
-              <i class="fab fa-whatsapp"></i>
-            </a>
+            </div>
+            <div class="btn btn-outline-light btn-social mx-1 social-media">
+              <i class="fab fa-youtube"></i>
+            </div>
           </div>
 
           <div class="col-lg-4">
             <h4 class="text-uppercase mb-4">About Me</h4>
             <p class="lead mb-0">
-              I am Prem Singh.
+              ....................
               <br />
             </p>
           </div>
