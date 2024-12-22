@@ -248,3 +248,18 @@ document
 // });
 
 /* End of Event Listeners */
+
+const python = document.getElementById("pythonBox");
+const html = document.getElementById("htmlBox");
+
+document.querySelectorAll(".btn-check").forEach((el) => {
+  el.addEventListener("change", () => {
+    if (document.getElementById("python").checked) {
+      html.style.display = "none";
+      python.style.display = "block";
+    } else {
+      html.style.display = "block";
+      python.style.display = "none";
+    }
+  });
+});
