@@ -27,7 +27,8 @@ This website is designed to:
 │   ├── css/               # Stylesheets
 │   ├── font/              # Images for the site
 │   ├── img/               # Images for the site
-│   └── javascript/        # JavaScript file
+│   ├── font/              # Font files
+│   └── js/                # JavaScript file
 ├── index.html             # Main landing page
 ├── styles.css             # Main stylesheet
 ├── script.js              # Main JavaScript
