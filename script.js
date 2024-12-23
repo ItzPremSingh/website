@@ -1,12 +1,9 @@
 "use strict";
 
 /* Global Variables */
-let mouseX = 0,
-  mouseY = 0;
-
 const messageInputBox = document.getElementById("message");
-
-const customPointer = document.getElementById("customPointer");
+const python = document.getElementById("pythonBox");
+const html = document.getElementById("htmlBox");
 
 const confirmationMessage = {
   Feedback: "Have you sended your feedback?",
@@ -28,80 +25,6 @@ const confirmedMessage = {
 
 /* Functions */
 
-function createPageItem(title, name) {
-  const repository = `https://itzpremsingh.github.io/HTML/${name}`;
-
-  const cardContainer = document.createElement("div");
-  cardContainer.classList.add("card-container", "col-md-6", "col-lg-4", "mb-5");
-
-  const cardDiv = document.createElement("div");
-  cardDiv.classList.add(
-    "card",
-    "shadow-lg",
-    "p-0",
-    "bg-body",
-    "rounded",
-    "border-0"
-  );
-
-  const imgElement = document.createElement("img");
-  imgElement.classList.add("card-img-top");
-  imgElement.src = `${repository}/cover.png`;
-
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body", "text-center");
-
-  const titleElement = document.createElement("h4");
-  titleElement.classList.add("card-title", "text-dark", "mb-3");
-  titleElement.textContent = title;
-
-  const openButton = document.createElement("div");
-  openButton.classList.add("btn", "btn-primary", "mt-2", "w-100");
-  openButton.textContent = "Open Page";
-
-  openButton.addEventListener("click", () => {
-    window.open(`${repository}/index.html`, "_blank");
-  });
-
-  cardBody.appendChild(titleElement);
-  cardBody.appendChild(openButton);
-  cardDiv.appendChild(imgElement);
-  cardDiv.appendChild(cardBody);
-  cardContainer.appendChild(cardDiv);
-
-  const customPointer = document.createElement("div");
-  customPointer.classList.add("custom-pointer");
-  customPointer.id = "custom-pointer";
-  cardContainer.appendChild(customPointer);
-
-  addCardAnimation(cardContainer, cardDiv);
-
-  return cardContainer;
-}
-
-function loadPages() {
-  const loadingDiv = document.createElement("div");
-  loadingDiv.classList.add("d-flex", "justify-content-center");
-  loadingDiv.id = "loading";
-  pagesItems.appendChild(loadingDiv);
-
-  const spinner = document.createElement("div");
-  spinner.classList.add(
-    "spinner-border",
-    "text-primary",
-    "mx-auto",
-    "my-5",
-    "d-block"
-  );
-  spinner.role = "status";
-  loadingDiv.appendChild(spinner);
-
-  const span = document.createElement("span");
-  span.classList.add("visually-hidden");
-  span.textContent = "Loading...";
-  spinner.appendChild(span);
-}
-
 function addCardAnimation(container, card) {
   container.addEventListener("mousemove", (e) => {
     const { offsetWidth: width, offsetHeight: height } = card;
@@ -119,14 +42,6 @@ function addCardAnimation(container, card) {
     card.style.transform = "rotateX(0) rotateY(0)";
   });
 }
-
-function savePageDetails(names) {
-  sessionStorage.setItem("names", JSON.stringify(names));
-}
-
-function getPageDetails() {
-  return JSON.parse(sessionStorage.getItem("names")) || [];
-}
 /* End of Functions */
 
 /* Event Listeners */
@@ -134,7 +49,10 @@ document.getElementById("logo").addEventListener("click", () => {
   window.location.href = "#page-top";
 });
 
-document.querySelectorAll("#avatar, #githubProfileBtn").forEach((el) => {
+const avatarBtn = document.getElementById("avatar");
+const githubProfileBtn = document.getElementById("githubProfileBtn");
+
+[avatarBtn, githubProfileBtn].forEach((el) => {
   el.addEventListener("click", () => {
     window.open("https://github.com/itzpremsingh", "_blank");
   });
@@ -166,8 +84,9 @@ document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
       document.getElementById("confirmMail")
     );
 
-    document.querySelector("#confirmMail .modal-body").textContent =
-      confirmationMessage[reason];
+    document
+      .getElementById("confirmMail")
+      .querySelector(".modal-body").textContent = confirmationMessage[reason];
     confirmMail.show();
 
     document
@@ -179,80 +98,15 @@ document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const allPages = getPageDetails();
-  if (allPages.length === 0) {
-    loadPages();
-    fetch("https://api.github.com/repos/itzpremsingh/HTML/contents/")
-      .then((res) => res.json())
-      .then((data) => {
-        document.getElementById("loading").remove();
-        const directories = data
-          .filter((item) => item.type === "dir" && !item.name.startsWith("."))
-          .map((item) => item.name);
-        directories.forEach((name) => {
-          const title = name
-            .split("-")
-            .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-            .join(" ");
-          pagesItems.appendChild(createPageItem(title, name));
-          allPages.push(name);
-        });
+const socialMediaButtons = document.getElementsByClassName("social-media");
+Array.from(socialMediaButtons).forEach((el) =>
+  el.addEventListener("click", () =>
+    new bootstrap.Modal(document.getElementById("socialMediaModal")).show()
+  )
+);
 
-        savePageDetails(allPages);
-      })
-      .catch((error) => console.error(error));
-  } else {
-    allPages.forEach((name) => {
-      const title = name
-        .split("-")
-        .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-        .join(" ");
-      pagesItems.appendChild(createPageItem(title, name));
-    });
-  }
-});
-
-document
-  .querySelectorAll(".social-media")
-  .forEach((el) =>
-    el.addEventListener("click", () =>
-      new bootstrap.Modal(document.getElementById("socialMediaModal")).show()
-    )
-  );
-
-// document.addEventListener("mousemove", (event) => {
-//   mouseX = event.clientX;
-//   mouseY = event.clientY;
-
-//   customPointer.style.left = `${mouseX}px`;
-//   customPointer.style.top = `${mouseY}px`;
-
-//   customPointer.style.transform = `translate(-50%, -50%) scale(1.1)`;
-//   setTimeout(() => {
-//     customPointer.style.transform = `translate(-50%, -50%) scale(1)`;
-//   }, 50);
-// });
-
-// document.addEventListener("scroll", () => {
-//   customPointer.style.left = `${mouseX}px`;
-//   customPointer.style.top = `${mouseY}px`;
-// });
-
-// document.addEventListener("mouseenter", () => {
-//   customPointer.style.display = "block";
-// });
-
-// document.addEventListener("mouseleave", () => {
-//   customPointer.style.display = "none";
-// });
-
-/* End of Event Listeners */
-
-const python = document.getElementById("pythonBox");
-const html = document.getElementById("htmlBox");
-
-document.querySelectorAll(".btn-check").forEach((el) => {
+const btnCheckElements = document.getElementsByClassName("btn-check");
+Array.from(btnCheckElements).forEach((el) => {
   el.addEventListener("change", () => {
     if (document.getElementById("python").checked) {
       html.style.display = "none";
@@ -263,3 +117,18 @@ document.querySelectorAll(".btn-check").forEach((el) => {
     }
   });
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const pythonItems = document.getElementById("pythonItems");
+  const htmlItems = document.getElementById("pagesItems");
+
+  // Convert HTMLCollection to an array and then use forEach
+  Array.from(pythonItems.getElementsByClassName("card-container")).forEach(
+    (el) => addCardAnimation(el, el.getElementsByClassName("card")[0])
+  );
+
+  Array.from(htmlItems.getElementsByClassName("card-container")).forEach((el) =>
+    addCardAnimation(el, el.getElementsByClassName("card")[0])
+  );
+});
+/* End of Event Listeners */

@@ -98,7 +98,12 @@
         </div>
 
         <div class="d-flex justify-content-center align-items-center mb-3">
-          <div class="btn-group" data-bs-toggle="buttons">
+          <div
+            class="btn-group btn-group-toggle"
+            data-bs-toggle="buttons"
+            role="group"
+            aria-label="Toggle options"
+          >
             <input
               class="btn-check"
               type="radio"
@@ -107,9 +112,14 @@
               autocomplete="off"
               checked
             />
-            <label class="btn btn-outline-primary btn-lg" for="html"
-              >HTML</label
+            <label
+              class="btn btn-outline-primary btn-lg rounded-pill shadow-sm px-4"
+              for="html"
             >
+              <i class="fab fa-html5 me-2"></i> HTML
+            </label>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             <input
               class="btn-check"
@@ -118,9 +128,12 @@
               id="python"
               autocomplete="off"
             />
-            <label class="btn btn-outline-primary btn-lg" for="python"
-              >Python</label
+            <label
+              class="btn btn-outline-primary btn-lg rounded-pill shadow-sm px-4"
+              for="python"
             >
+              <i class="fab fa-python me-2"></i> Python
+            </label>
           </div>
         </div>
 
@@ -128,42 +141,31 @@
 
         <div id="pythonBox" style="display: none">
           <div class="row justify-content-center" id="pythonItems">
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div
-                class="card shadow-sm h-100"
-                style="border-radius: 1.5rem; background-color: transparent"
-              >
-                <div class="card-header py-3">
-                  <h5 class="card-title m-0">Chat</h5>
-                </div>
-                <div class="card-body">
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Chat Application</h4>
                   <p class="card-text">
-                    This is a real-time messaging app that lets users chat
-                    through a command-line or graphical interface using python’s
-                    curses library. it uses socket programming for communication
-                    between clients and a central server, enabling instant
-                    message exchange.
+                    Experience real-time messaging through a command-line or
+                    graphical interface built with Python's curses library.
+                    Utilizing socket programming, this app facilitates seamless
+                    communication between clients and a central server.
                   </p>
-                </div>
-                <div class="card-footer py-3 border-0">
                   <a
                     href="https://github.com/ItzPremSingh/Python/tree/main/Projects/Chat"
-                    class="btn btn-sm btn-primary"
-                    >View project</a
+                    class="btn btn-primary mt-2 w-100"
                   >
+                    <i class="fab fa-github"></i>
+                    View Project
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div
-                class="card shadow-sm h-100"
-                style="border-radius: 1.5rem; background-color: transparent"
-              >
-                <div class="card-header py-3">
-                  <h5 class="card-title m-0">Fullform Api</h5>
-                </div>
-                <div class="card-body">
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Fullform API</h4>
                   <p class="card-text">
                     This project simulates a full-form API using data from
                     fullform.com. It allows users to input abbreviations and
@@ -171,26 +173,21 @@
                     efficiently mimics an API response for quick and easy
                     abbreviation lookups.
                   </p>
-                </div>
-                <div class="card-footer py-3 border-0">
                   <a
                     href="https://github.com/ItzPremSingh/Python/tree/main/Projects/Fullform API"
-                    class="btn btn-sm btn-primary"
-                    >View project</a
+                    class="btn btn-primary mt-2 w-100"
                   >
+                    <i class="fab fa-github"></i>
+                    View Project
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div
-                class="card shadow-sm h-100"
-                style="border-radius: 1.5rem; background-color: transparent"
-              >
-                <div class="card-header py-3">
-                  <h5 class="card-title m-0">Moneytracker</h5>
-                </div>
-                <div class="card-body">
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Money Tracker</h4>
                   <p class="card-text">
                     This tool allows users to track financial transactions via
                     the command-line interface (cli). it accepts arguments to
@@ -198,26 +195,21 @@
                     database. the system helps users manage finances by
                     categorizing expenses and generating reports efficiently.
                   </p>
-                </div>
-                <div class="card-footer py-3 border-0">
                   <a
                     href="https://github.com/ItzPremSingh/Python/tree/main/Projects/MoneyTracker"
-                    class="btn btn-sm btn-primary"
-                    >View project</a
+                    class="btn btn-primary mt-2 w-100"
                   >
+                    <i class="fab fa-github"></i>
+                    View Project
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div
-                class="card shadow-sm h-100"
-                style="border-radius: 1.5rem; background-color: transparent"
-              >
-                <div class="card-header py-3">
-                  <h5 class="card-title m-0">Pyshare</h5>
-                </div>
-                <div class="card-body">
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Pyshare</h4>
                   <p class="card-text">
                     This tool allows users to share files between a pc and
                     mobile device through a website. it supports easy file
@@ -225,13 +217,13 @@
                     sharing. the system enables seamless connectivity between
                     devices for efficient file exchange.
                   </p>
-                </div>
-                <div class="card-footer py-3 border-0">
                   <a
                     href="https://github.com/ItzPremSingh/Python/tree/main/Projects/Pyshare"
-                    class="btn btn-sm btn-primary"
-                    >View project</a
+                    class="btn btn-primary mt-2 w-100"
                   >
+                    <i class="fab fa-github"></i>
+                    View Project
+                  </a>
                 </div>
               </div>
             </div>
@@ -240,7 +232,105 @@
 
         <div id="htmlBox">
           <div class="row justify-content-center" id="pagesItems">
-            <!-- Pages will be added here -->
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <img
+                  src="https://itzpremsingh.github.io/HTML/personality-test/cover.png"
+                  class="card-img-top"
+                  alt="personality-test"
+                />
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Personality test</h4>
+                  <a
+                    href="https://itzpremsingh.github.io/HTML/personality-test/index.html"
+                    class="btn btn-primary mt-2 w-100"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Page</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <img
+                  src="https://itzpremsingh.github.io/HTML/tic-tac-toe-game/cover.png"
+                  class="card-img-top"
+                  alt="tic-tac-toe-game"
+                />
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Tic tac toe game</h4>
+                  <a
+                    href="https://itzpremsingh.github.io/HTML/tic-tac-toe-game/index.html"
+                    class="btn btn-primary mt-2 w-100"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Page</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <img
+                  src="https://itzpremsingh.github.io/HTML/memory-game/cover.png"
+                  class="card-img-top"
+                  alt="memory-game"
+                />
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Memory game</h4>
+                  <a
+                    href="https://itzpremsingh.github.io/HTML/memory-game/index.html"
+                    class="btn btn-primary mt-2 w-100"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Page</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <img
+                  src="https://itzpremsingh.github.io/HTML/mines-game/cover.png"
+                  class="card-img-top"
+                  alt="mines-game"
+                />
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Mines game</h4>
+                  <a
+                    href="https://itzpremsingh.github.io/HTML/mines-game/index.html"
+                    class="btn btn-primary mt-2 w-100"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Page</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="card-container col-md-6 col-lg-4 mb-5">
+              <div class="card shadow-lg p-0 bg-body rounded border-0">
+                <img
+                  src="https://itzpremsingh.github.io/HTML/guessing-game/cover.png"
+                  class="card-img-top"
+                  alt="guessing-game"
+                />
+                <div class="card-body text-center">
+                  <h4 class="card-title text-dark mb-3">Guessing game</h4>
+                  <a
+                    href="https://itzpremsingh.github.io/HTML/guessing-game/index.html"
+                    class="btn btn-primary mt-2 w-100"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Page</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

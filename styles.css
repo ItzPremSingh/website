@@ -117,27 +117,6 @@ textarea {
 
 /* Enable animations on larger screens */
 @media (min-width: 768px) {
-  /* * {
-    cursor: none !important;
-  }
-
-  #customPointer {
-    display: none;
-    z-index: 10000;
-    position: fixed;
-    width: 5vw;
-    height: 5vw;
-    max-width: 50px;
-    max-height: 50px;
-    min-width: 20px;
-    min-height: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: transform 0.05s ease, background-color 0.3s ease;
-  } */
-
   .masthead-avatar {
     animation: bounce-float 2s ease-in-out infinite;
   }
