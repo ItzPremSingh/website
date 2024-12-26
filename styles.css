@@ -1,4 +1,3 @@
-/* Webite styles */
 .navbar-brand {
   text-shadow: 0 0 1px var(--bs-secondary), 0 0 5px var(--bs-secondary),
     0 0 10px var(--bs-secondary), 0 0 15px var(--bs-secondary),
@@ -18,9 +17,6 @@
   border-radius: 50%;
 }
 
-/* Webite styles end */
-
-/* Custom styles */
 #contactForm {
   padding: 30px;
   border-radius: 8px;
@@ -59,72 +55,72 @@ textarea {
   transform-style: preserve-3d;
   transition: transform 0.1s ease-out;
 }
-/* Custom styles end */
 
-/* Animation keyframes */
-@keyframes bounce-float {
+#author {
+  opacity: 0.8;
+  font-style: italic;
+}
+#quote::after {
+  content: "|";
+  display: inline-block;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
   0%,
   100% {
-    transform: translateY(0) scale(1);
-  }
-  25% {
-    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
   }
   50% {
-    transform: translateY(0) scale(1.05);
-  }
-  75% {
-    transform: translateY(-10px) scale(1.1);
+    opacity: 0;
   }
 }
 
-@keyframes wave-scale {
-  0%,
-  100% {
-    transform: scale(1) translateY(0);
-  }
-  25% {
-    transform: scale(1.05) translateY(-5px);
-  }
-  50% {
-    transform: scale(1.1) translateY(0);
-  }
-  75% {
-    transform: scale(1.05) translateY(5px);
-  }
+#quote.typing-complete::after {
+  display: none;
 }
 
-@keyframes glow-text {
-  0%,
-  100% {
-    text-shadow: 0 0 1px var(--bs-secondary), 0 0 5px var(--bs-secondary),
-      0 0 10px var(--bs-secondary), 0 0 15px var(--bs-secondary),
-      0 0 20px var(--bs-secondary), 0 0 25px var(--bs-secondary);
-  }
-  25%,
-  75% {
-    text-shadow: 0 0 5px var(--bs-secondary), 0 0 10px var(--bs-secondary),
-      0 0 15px var(--bs-secondary), 0 0 20px var(--bs-secondary),
-      0 0 25px var(--bs-secondary), 0 0 30px var(--bs-secondary);
-  }
-  50% {
-    text-shadow: 0 0 10px var(--bs-secondary), 0 0 15px var(--bs-secondary),
-      0 0 20px var(--bs-secondary), 0 0 30px var(--bs-secondary),
-      0 0 40px var(--bs-secondary), 0 0 60px var(--bs-secondary);
-  }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
-/* Animations keyframes end */
 
-/* Enable animations on larger screens */
-@media (min-width: 768px) {
-  .masthead-avatar {
-    animation: bounce-float 2s ease-in-out infinite;
-  }
-  .masthead-heading {
-    animation: wave-scale 2s ease-in-out infinite;
-  }
-  .navbar-brand {
-    animation: glow-text 2s ease-in-out infinite;
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 400px;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body .btn {
+  margin-top: auto;
+}
+
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--bs-primary);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  #cursor {
+    visibility: hidden !important;
   }
 }
-/* Enable animations on larger screens end */

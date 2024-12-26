@@ -1,9 +1,16 @@
 "use strict";
 
 /* Global Variables */
+const socialMediaButtons = document.getElementsByClassName("social-media");
+const btnCheckElements = document.getElementsByClassName("btn-check");
 const messageInputBox = document.getElementById("message");
+const quoteElement = document.getElementById("quote");
 const python = document.getElementById("pythonBox");
+const cursor = document.getElementById("cursor");
 const html = document.getElementById("htmlBox");
+
+const quoteText = quoteElement.innerText;
+quoteElement.innerText = "";
 
 const confirmationMessage = {
   Feedback: "Have you sended your feedback?",
@@ -22,27 +29,6 @@ const confirmedMessage = {
 };
 
 /* End of Global Variables */
-
-/* Functions */
-
-function addCardAnimation(container, card) {
-  container.addEventListener("mousemove", (e) => {
-    const { offsetWidth: width, offsetHeight: height } = card;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const rotateX = (y / height - 0.5) * 30;
-    const rotateY = (x / width - 0.5) * -30;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  container.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0) rotateY(0)";
-  });
-}
-/* End of Functions */
 
 /* Event Listeners */
 document.getElementById("logo").addEventListener("click", () => {
@@ -98,14 +84,12 @@ document.getElementById("sendEmailBtn").addEventListener("click", (event) => {
   }
 });
 
-const socialMediaButtons = document.getElementsByClassName("social-media");
 Array.from(socialMediaButtons).forEach((el) =>
   el.addEventListener("click", () =>
     new bootstrap.Modal(document.getElementById("socialMediaModal")).show()
   )
 );
 
-const btnCheckElements = document.getElementsByClassName("btn-check");
 Array.from(btnCheckElements).forEach((el) => {
   el.addEventListener("change", () => {
     if (document.getElementById("python").checked) {
@@ -118,17 +102,112 @@ Array.from(btnCheckElements).forEach((el) => {
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const pythonItems = document.getElementById("pythonItems");
-  const htmlItems = document.getElementById("pagesItems");
-
-  // Convert HTMLCollection to an array and then use forEach
-  Array.from(pythonItems.getElementsByClassName("card-container")).forEach(
-    (el) => addCardAnimation(el, el.getElementsByClassName("card")[0])
-  );
-
-  Array.from(htmlItems.getElementsByClassName("card-container")).forEach((el) =>
-    addCardAnimation(el, el.getElementsByClassName("card")[0])
-  );
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
 });
+
+Array.from(document.getElementsByClassName("card-container")).forEach(
+  (card) => {
+    card.addEventListener("mouseenter", () => {
+      cursor.style.visibility = "visible";
+      cursor.style.width = "50px";
+      cursor.style.height = "50px";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      cursor.style.visibility = "hidden";
+      cursor.style.width = "30px";
+      cursor.style.height = "30px";
+    });
+  }
+);
+
 /* End of Event Listeners */
+
+/* GSAP Animations */
+gsap.registerPlugin(TextPlugin);
+
+var stl = gsap.timeline();
+
+stl.from("#logo", {
+  y: -100,
+  opacity: 0,
+  duration: 0.7,
+  delay: 0.5,
+  ease: "back.out(1.7)",
+  rotation: 45,
+  scale: 0.5,
+});
+
+stl.from(".nav-link", {
+  y: -100,
+  opacity: 0,
+  duration: 0.7,
+  stagger: 0.2,
+});
+
+gsap.from("#menu", {
+  opacity: 0,
+  duration: 0.5,
+  delay: 1,
+  x: 100,
+});
+
+new IntersectionObserver(
+  (entries, observer) => {
+    if (entries[0].isIntersecting) {
+      gsap.from("#name", {
+        duration: 1.5,
+        opacity: 0,
+        delay: 0.2,
+        y: 100,
+        ease: "power3.out",
+        scale: 0.5,
+      });
+      observer.unobserve(document.getElementById("name"));
+    }
+  },
+  { rootMargin: "0px 0px 0px 0px", threshold: 1.0 }
+).observe(document.getElementById("name"));
+
+new IntersectionObserver(
+  (entries, observer) => {
+    if (entries[0].isIntersecting) {
+      gsap.to("#quote", {
+        duration: quoteText.length * 0.1,
+        text: quoteText,
+        ease: "none",
+        onComplete: () => {
+          quoteElement.classList.add("typing-complete");
+        },
+      });
+
+      observer.unobserve(quoteElement);
+    }
+  },
+  { rootMargin: "0px 0px 0px 0px", threshold: 1.0 }
+).observe(document.getElementById("quote"));
+
+new IntersectionObserver(
+  (entries, observer) => {
+    if (entries[0].isIntersecting) {
+      gsap.from("#htmlLabel", {
+        duration: 1.5,
+        opacity: 0,
+        delay: 0.2,
+        x: -1000,
+      });
+      gsap.from("#pythonLabel", {
+        duration: 1.5,
+        opacity: 0,
+        delay: 0.2,
+        x: 1000,
+      });
+      observer.unobserve(document.getElementById("options"));
+    }
+  },
+  { rootMargin: "0px 0px 0px 0px", threshold: 1.0 }
+).observe(document.getElementById("options"));
+
+/* GSAP Animations End */
