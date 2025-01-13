@@ -17,14 +17,6 @@
   border-radius: 50%;
 }
 
-#contactForm {
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .form-group {
   margin-bottom: 20px;
 }
@@ -37,14 +29,6 @@
 
 textarea {
   resize: none;
-}
-
-.error-message {
-  color: var(--bs-danger);
-  font-size: 0.875rem;
-  margin-top: 4px;
-  padding: 4px;
-  display: none;
 }
 
 .card-container {
@@ -91,6 +75,7 @@ textarea {
   flex-direction: column;
   height: 100%;
   min-height: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-body {
@@ -100,22 +85,18 @@ textarea {
   justify-content: space-between;
 }
 
-.card-body .btn {
-  margin-top: auto;
-}
-
 #cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: var(--bs-primary);
+  opacity: 0.8;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.3s ease;
   visibility: hidden;
 }
 
@@ -123,4 +104,57 @@ textarea {
   #cursor {
     visibility: hidden !important;
   }
+
+  #contactForm {
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  #contactForm {
+    padding: 100px 50px;
+  }
+
+  .card:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+#divider {
+  display: inline-block;
+  width: 1rem;
+}
+
+.card-container {
+  cursor: none !important;
+}
+
+#pythonBox .card-img-top {
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  height: 200px;
+  border-radius: 12px;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+#pythonBox .title-hidden {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+#pythonBox .text-hidden {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.error-message {
+  display: none;
 }
